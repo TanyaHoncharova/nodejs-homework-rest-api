@@ -20,6 +20,10 @@ router.get('/logout', authenticate, controllerWrapper(ctrl.logout));
 // '/api/users/current'
 // router.get('/current', authenticate, controllerWrapper(ctrl.current));
 router.get('/current', authenticate, controllerWrapper(ctrl.current));
+
+router.get('/verify/:verificationToken', controllerWrapper(ctrl.verify));
 // '/api/users/avatars'
-router.patch('/avatars', authenticate, upload.single('avatar'), controllerWrapper(ctrl.updateAvatar))
+router.patch('/avatars', authenticate, upload.single('avatar'), controllerWrapper(ctrl.updateAvatar));
+// повтороя отправка mail для верификации
+router.post('/verify', controllerWrapper(ctrl.repeatUserEmailVerification))
 module.exports = router;
